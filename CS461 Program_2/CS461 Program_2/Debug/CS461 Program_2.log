@@ -1,0 +1,10 @@
+﻿  CS461Program2.cpp
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(45): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(61): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(66): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(96): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(101): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\david\documents\visual studio 2017\projects\cs461 program_2\cs461 program_2\cs461program2.cpp(117): warning C4018: '<': signed/unsigned mismatch
+  CS461 Program_2.vcxproj -> C:\Users\david\Documents\Visual Studio 2017\Projects\CS461 Program_2\Debug\CS461 Program_2.exe
