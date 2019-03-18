@@ -31,12 +31,12 @@ double GameNode::getGames() {
 	return (wins + losses + draws);
 }
 
-double GameNode::getPayoff() {
+double GameNode::getPayoff(double N) { // N is total games so far
 	if ((wins + losses + draws) == 0) {
 		payoff = 0;
 		return payoff;
 	}
-	payoff = (wins + (draws / 2)) / (wins + losses + draws);
+	payoff = (wins + (draws / 2)) / (wins + losses + draws) + sqrt(2)*sqrt(log(N)/(wins+losses+draws));
 	return payoff;
 }
 

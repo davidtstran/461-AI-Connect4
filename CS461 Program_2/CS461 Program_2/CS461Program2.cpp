@@ -27,6 +27,7 @@ int AIvAI() {
 	cout << "==================================\n";
 	Board overall; 
 	vector<GameNode> availMoves;
+	vector<int> availCols;
 	int gameCnt = 0;
 	int maxCol = 0;
 	double maxPayoff = 0;
@@ -38,17 +39,19 @@ int AIvAI() {
 			if (!overall.fullCol(c)) {
 				GameNode n(overall, "R", c);
 				availMoves.push_back(n);
+				availCols.push_back(c);
 			}
 		}
+		gameCnt = 0;
 		while (gameCnt != redGamesTotal) {
 			maxPayoff = 0;
 			for (int i = 0; i < availMoves.size(); i++) {
-				if (availMoves[i].getPayoff() > maxPayoff) {
-					maxPayoff = availMoves[i].getPayoff();
+				if (availMoves[i].getPayoff(gameCnt) > maxPayoff) {
+					maxPayoff = availMoves[i].getPayoff(gameCnt);
 				}
 			}
 			for (int i = 0; i < availMoves.size(); i++) {
-				if (availMoves[i].getPayoff() >= maxPayoff) {
+				if (availMoves[i].getPayoff(gameCnt) >= maxPayoff) {
 					if (gameCnt == redGamesTotal)
 						break;
 					availMoves[i].simulateGame("R");
@@ -60,12 +63,12 @@ int AIvAI() {
 		maxPayoff = 0;
 		for (int i = 0; i < availMoves.size(); i++) {
 			//cout << i << "&" << availMoves[i].getPayoff() << " ";   // prints out the scores for each possible move
-			if (availMoves[i].getPayoff() >= maxPayoff)
-				maxPayoff = availMoves[i].getPayoff();
+			if (availMoves[i].getPayoff(gameCnt) >= maxPayoff)
+				maxPayoff = availMoves[i].getPayoff(gameCnt);
 		}
 		for (int i = 0; i < availMoves.size(); i++) {
-			if (availMoves[i].getPayoff() == maxPayoff) {
-				maxCol = i;
+			if (availMoves[i].getPayoff(gameCnt) == maxPayoff) {
+				maxCol = availCols[i];
 				cout << "Best Move for R is at Col " << i << endl;
 				cout << "R has " << availMoves[i].getWins() << " wins and ";
 				cout << availMoves[i].getDraws() << " draws out of " << availMoves[i].getGames() << " games (of the " << gameCnt << " possible games)\n";
@@ -78,7 +81,12 @@ int AIvAI() {
 			cout << "\nRed has won!!\n";
 			break;
 		}
+		if (overall.fullBoard()) {
+			cout << "\nGame ends in a draw\n";
+			break;
+		}
 		availMoves.clear();
+		availCols.clear();
 		cout << endl;
 
 		////////////////////////////////////////////
@@ -88,18 +96,19 @@ int AIvAI() {
 			if (!overall.fullCol(c)) {
 				GameNode n(overall, "Y", c);
 				availMoves.push_back(n);
+				availCols.push_back(c);
 			}
 		}
 		gameCnt = 0;
 		while (gameCnt != yellowGamesTotal) {
 			maxPayoff = 0;
 			for (int i = 0; i < availMoves.size(); i++) {
-				if (availMoves[i].getPayoff() > maxPayoff) {
-					maxPayoff = availMoves[i].getPayoff();
+				if (availMoves[i].getPayoff(gameCnt) > maxPayoff) {
+					maxPayoff = availMoves[i].getPayoff(gameCnt);
 				}
 			}
 			for (int i = 0; i < availMoves.size(); i++) {
-				if (availMoves[i].getPayoff() >= maxPayoff) {
+				if (availMoves[i].getPayoff(gameCnt) >= maxPayoff) {
 					if (gameCnt == yellowGamesTotal)
 						break;
 					availMoves[i].simulateGame("Y");
@@ -111,12 +120,12 @@ int AIvAI() {
 		maxPayoff = 0;
 		for (int i = 0; i < availMoves.size(); i++) {
 			//cout << i << "&" << availMoves[i].getPayoff() << " ";   // prints out the scores for each possible move
-			if (availMoves[i].getPayoff() >= maxPayoff)
-				maxPayoff = availMoves[i].getPayoff();
+			if (availMoves[i].getPayoff(gameCnt) >= maxPayoff)
+				maxPayoff = availMoves[i].getPayoff(gameCnt);
 		}
 		for (int i = 0; i < availMoves.size(); i++) {
-			if (availMoves[i].getPayoff() == maxPayoff) {
-				maxCol = i;
+			if (availMoves[i].getPayoff(gameCnt) == maxPayoff) {
+				maxCol = availCols[i];
 				cout << "Best Move for Y is at Col " << i << endl;
 				cout << "Y has " << availMoves[i].getWins() << " wins and ";
 				cout << availMoves[i].getDraws() << " draws out of " << availMoves[i].getGames() << " games (of the " << gameCnt << " possible games)\n";
@@ -134,6 +143,7 @@ int AIvAI() {
 			break;
 		}
 		availMoves.clear();
+		availCols.clear();
 		cout << endl;
 	}
 

@@ -27,7 +27,7 @@ public:
 	double getLosses();
 	double getDraws();
 	double getGames();
-	double getPayoff();
+	double getPayoff(double N); // N is total games so far
 	void printTest();
 	void simulateGame(string playr);
 };
